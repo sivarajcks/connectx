@@ -1,0 +1,57 @@
+﻿@model ConnectX.Models.UserProfileViewModel
+
+@{
+    string formattedDOB = Model?.DOB != null ? Model.DOB.ToString("yyyy-MM-dd") : string.Empty;
+}
+
+@*<h2>Welcome, @Model.Name!</h2>*@
+
+<h3>Create Profile</h3>
+
+<!-- Create user profile form -->
+<form method="post" action="@Url.Action("Profile", "Account")" class="profile-form">
+    <h4>User Profile</h4>
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name" value="@Model?.Name" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.Name)</span>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" value="@Model?.Email" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.Email)</span>
+    </div>
+
+    <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="DOB" value="@formattedDOB" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.DOB)</span>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="Location" value="@Model?.Location" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.Location)</span>
+    </div>
+
+    <div class="form-group">
+        <label for="profilePic">Profile Picture:</label>
+        <input type="file" id="profilePic" name="ProfilePic" class="form-control-file" />
+        <span class="text-danger">@Html.ValidationMessageFor(model => model.ProfilePic)</span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Profile</button>
+</form>
+
+<style>
+    .profile-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+</style>
